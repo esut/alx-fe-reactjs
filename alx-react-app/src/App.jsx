@@ -18,7 +18,7 @@ function App() {
       <div>
       <Header />
         <MainContent />
-        <UserProfile name="Mounir" age="26" bio="Loves hiking and photography" />
+        <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
             <Footer />
 
         <a href="https://vitejs.dev" target="_blank">
