@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import UserDetails from './UserDetails';
-import UserContext from './UserContext'; // استيراد UserContext
+import UserContext from './UserContext';
 
 function UserInfo() {
-  const userData = useContext(UserContext); // استخدام useContext لاستهلاك البيانات
+  const userData = useContext(UserContext);
 
-  return <UserDetails />;
+  return <UserDetails userData={userData} />;
 }
 
 export default UserInfo;

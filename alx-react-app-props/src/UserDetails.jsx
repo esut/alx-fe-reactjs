@@ -1,13 +1,6 @@
-import React, { useContext } from 'react';
-import UserContext from './UserContext'; // استيراد UserContext
+import React from 'react';
 
-function UserDetails() {
-  const userData = useContext(UserContext); // استخدام useContext لاستهلاك البيانات
-
-  if (!userData) {
-    return <div>No user data available</div>; // التعامل مع حالة عدم توفر البيانات
-  }
-
+function UserDetails({ userData }) {
   return (
     <div>
       <p>Name: {userData.name}</p>
