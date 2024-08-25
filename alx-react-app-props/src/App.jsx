@@ -9,16 +9,11 @@ import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
 
-import ProfilePage from './ProfilePage';
-import UserContext from './UserContext';
-
 function App() {
-  const [count, setCount] = useState(0);
-
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
+  const [count, setCount] = useState(0)
 
   return (
-    <UserContext.Provider value={userData}>
+    <>
 
       <div>
       <Header />
@@ -33,10 +28,6 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-
-      <h1>Profile Page</h1>
-      <ProfilePage />
-
       <h1>Vite + React</h1>
       <WelcomeMessage />
       <div className="card">
@@ -50,8 +41,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      </UserContext.Provider>
-  );
+    </>
+  )
 }
 
 export default App
