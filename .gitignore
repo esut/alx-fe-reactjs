@@ -1,4 +1,6 @@
 /my-company/Userslenovonpm-cache
+/my-company/node_modules
+
 /Userslenovonpm-cache
 
 /recipe-sharing-app/Userslenovonpm-cache
@@ -14,3 +16,7 @@
 
 /react-router-advanced/Userslenovonpm-cache
 /react-router-advanced/node_modules
+
+
+/react-todo/Userslenovonpm-cache
+/react-todo/node_modules
