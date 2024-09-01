@@ -1,12 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Profile from "./components/Profile";
-import Home from "./components/Home";
-import NotFound from "./components/NotFound";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
-import BlogPost from "./components/BlogPost";
-import ProtectedRoute from "./components/ProtectedRoute";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Profile from './components/Profile';
+import Home from './components/Home';
+import NotFound from './components/NotFound';
+import ProfileDetails from './components/ProfileDetails';
+import ProfileSettings from './components/ProfileSettings';
+import BlogPost from './components/BlogPost';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (

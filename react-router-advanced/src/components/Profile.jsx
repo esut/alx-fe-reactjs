@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import React from 'react';
+import { Outlet, Link } from 'react-router-dom';
 
 function Profile() {
   return (
@@ -14,3 +14,4 @@ function Profile() {
 }
 
 export default Profile;
+
