@@ -18,15 +18,13 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     if (!formData.username || !formData.email || !formData.password) {
       alert('Please fill out all fields.');
       return;
     }
-
-
     console.log('Form data submitted:', formData);
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
