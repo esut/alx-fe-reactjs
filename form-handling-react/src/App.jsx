@@ -5,16 +5,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 import RegistrationForm from './components/RegistrationForm';
+import React from 'react';
+import FormikForm from './components/FormikForm';
 
 const App = () => {
   return (
-
     <div className="App">
-
-      <h1>Registration Form</h1>
-
-      <RegistrationForm />
-      
+      <h1>Registration Form with Formik</h1>
+      <FormikForm />
     </div>
   );
 };
