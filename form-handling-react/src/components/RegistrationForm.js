@@ -4,24 +4,30 @@ const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.username) newErrors.username = 'Username is required';
+    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.password) newErrors.password = 'Password is required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
-      alert('Please fill out all fields.');
-      return;
+    if (validate()) {
+      console.log('Form Data Submitted:', formData);
     }
-    console.log('Form data submitted:', formData);
   };
 
   return (
@@ -35,7 +41,9 @@ const RegistrationForm = () => {
           value={formData.username}
           onChange={handleChange}
         />
+        {errors.username && <p>{errors.username}</p>}
       </div>
+
       <div>
         <label htmlFor="email">Email:</label>
         <input
@@ -45,7 +53,9 @@ const RegistrationForm = () => {
           value={formData.email}
           onChange={handleChange}
         />
+        {errors.email && <p>{errors.email}</p>}
       </div>
+
       <div>
         <label htmlFor="password">Password:</label>
         <input
@@ -55,7 +65,9 @@ const RegistrationForm = () => {
           value={formData.password}
           onChange={handleChange}
         />
+        {errors.password && <p>{errors.password}</p>}
       </div>
+
       <button type="submit">Register</button>
     </form>
   );
