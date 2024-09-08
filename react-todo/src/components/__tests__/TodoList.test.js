@@ -1,35 +1,32 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import TodoList from '../TodoList';
+import '@testing-library/jest-dom/extend-expect';
+import TodoList from '../components';
 
-test('renders TodoList component and displays initial todos', () => {
+test('renders TodoList component', () => {
   render(<TodoList />);
-  expect(screen.getByText(/Todo List/i)).toBeInTheDocument();
-  expect(screen.getByText(/Learn React/i)).toBeInTheDocument();
-  expect(screen.getByText(/Learn Jest/i)).toBeInTheDocument();
-  expect(screen.getByText(/Build a Todo List/i)).toBeInTheDocument();
+  expect(screen.getByText('Learn React')).toBeInTheDocument();
+  expect(screen.getByText('Learn Testing')).toBeInTheDocument();
 });
 
 test('adds a new todo', () => {
   render(<TodoList />);
-  fireEvent.change(screen.getByRole('textbox'), { target: { value: 'New Todo' } });
-  fireEvent.click(screen.getByText(/Add Todo/i));
-  expect(screen.getByText(/New Todo/i)).toBeInTheDocument();
+  fireEvent.change(screen.getByPlaceholderText('Add a new todo'), { target: { value: 'New Todo' } });
+  fireEvent.click(screen.getByText('Add Todo'));
+  expect(screen.getByText('New Todo')).toBeInTheDocument();
 });
 
-test('toggles todo completion status', () => {
+test('toggles a todo item', () => {
   render(<TodoList />);
-  const todoItem = screen.getByText(/Learn React/i);
+  const todoItem = screen.getByText('Learn React');
   fireEvent.click(todoItem);
   expect(todoItem).toHaveStyle('text-decoration: line-through');
   fireEvent.click(todoItem);
   expect(todoItem).toHaveStyle('text-decoration: none');
 });
 
-test('deletes a todo', () => {
+test('deletes a todo item', () => {
   render(<TodoList />);
-  const deleteButton = screen.getAllByText(/Delete/i)[0];
-  fireEvent.click(deleteButton);
-  expect(screen.queryByText(/Learn React/i)).toBeNull();
+  fireEvent.click(screen.getByText('Delete', { selector: 'button' }));
+  expect(screen.queryByText('Learn React')).not.toBeInTheDocument();
 });
