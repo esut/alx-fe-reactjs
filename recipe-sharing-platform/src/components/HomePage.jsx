@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import data from '../data.json';
 import { Link } from 'react-router-dom';
-
+import AddRecipeForm from './AddRecipeForm';
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -23,6 +23,7 @@ const HomePage = () => {
               <h2 className="text-xl font-semibold mb-2">{recipe.title}</h2>
               <p className="text-gray-700">{recipe.summary}</p>
               <a href={`#`} className="text-blue-500 mt-2 inline-block">View Recipe</a>
+              <AddRecipeForm />
             </div>
           </div>
         ))}
