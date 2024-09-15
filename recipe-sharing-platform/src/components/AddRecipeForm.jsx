@@ -4,17 +4,38 @@ const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState({}); 
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!title.trim()) {
+      newErrors.title = 'Title is required.';
+    }
+
+    if (!ingredients.trim()) {
+      newErrors.ingredients = 'Ingredients are required.';
+    } else if (ingredients.trim().split('\n').length < 2) {
+      newErrors.ingredients = 'At least two ingredients are required.';
+    }
+
+    if (!instructions.trim()) {
+      newErrors.instructions = 'Instructions are required.';
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0; 
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title || !ingredients || !instructions) {
-      setError('All fields are required.');
+    if (!validate()) {
       return;
     }
 
-    setError('');
+    setErrors({});
 
     const newRecipe = {
       title,
@@ -33,36 +54,45 @@ const AddRecipeForm = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold mb-4">Add New Recipe</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {Object.keys(errors).length > 0 && (
+          <div className="mb-4">
+            {Object.values(errors).map((error, index) => (
+              <p key={index} className="text-red-500">{error}</p>
+            ))}
+          </div>
+        )}
         <div>
           <label className="block text-lg font-semibold mb-2">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg"
+            className={`w-full p-2 border rounded-lg ${errors.title ? 'border-red-500' : 'border-gray-300'}`}
             placeholder="Enter recipe title"
           />
+          {errors.title && <p className="text-red-500">{errors.title}</p>}
         </div>
         <div>
           <label className="block text-lg font-semibold mb-2">Ingredients</label>
           <textarea
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg"
+            className={`w-full p-2 border rounded-lg ${errors.ingredients ? 'border-red-500' : 'border-gray-300'}`}
             placeholder="Enter ingredients, one per line"
             rows="5"
           />
+          {errors.ingredients && <p className="text-red-500">{errors.ingredients}</p>}
         </div>
         <div>
           <label className="block text-lg font-semibold mb-2">Instructions</label>
           <textarea
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg"
+            className={`w-full p-2 border rounded-lg ${errors.instructions ? 'border-red-500' : 'border-gray-300'}`}
             placeholder="Enter preparation steps, one per line"
             rows="5"
           />
+          {errors.instructions && <p className="text-red-500">{errors.instructions}</p>}
         </div>
         <button
           type="submit"
