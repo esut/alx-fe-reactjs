@@ -7,7 +7,12 @@ export const fetchUserData = async (username) => {
     return response.data;
 
   };
-
+export const searchGitHubUsers = async (query) =>{
+    const{ usrname, location, minRepos } = query ;
+    const filters = [];
+    
+    return response.data.items;
+};
 
 
 
