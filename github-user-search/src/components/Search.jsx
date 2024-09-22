@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { fetchUserData } from '../services/githubService';
+import { fetchUserData, searchGitHubUsers } from '../services/githubService';
 
 const Search = () => {
 
     const [username, setUsername] = useState('');
+
+    const [location, setLocation] = useState('')
 
     const [userData, setUserData] = useState([]);
 
@@ -19,6 +21,9 @@ const Search = () => {
         setUsername(event.target.value); 
     };
 
+    const handleLocationChange = (event) => {
+        setLocation(event.target.value);
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault(); 
@@ -27,7 +32,7 @@ const Search = () => {
 
         try {
 
-            const data = await fetchUserData(username);
+            const data = await searchGitHubUsers({username, location});
             setUserData(data);
 
         } 
@@ -48,9 +53,9 @@ const Search = () => {
             <form onSubmit={handleSubmit}> 
                 <input
                     type="text"
-                    value={username}
-                    onChange={handleInputChange}
-                    placeholder="Enter your username:"
+                    value={location}
+                    onChange={handleLocationChange}
+                    placeholder="Enter your location :"
                 />
                 <button type="submit">Search</button> 
             </form>
