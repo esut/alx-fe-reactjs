@@ -33,3 +33,5 @@
 
 /github-user-search/Userslenovonpm-cache
 /github-user-search/node_modules
+
+github-user-search/.env
