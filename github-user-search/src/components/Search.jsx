@@ -14,6 +14,19 @@ const handleInputChange = (event) => {
 
 const handleSubmit = async (event) => { 
     event.preventDefault();
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={username}
+                    onChange={handleInputChange}
+                    placeholder=" Enter your username "
+                />
+                <button type="submit">Search</button> 
+            </form>
+        </div>
+    )
  };
 };
 export default Search;
