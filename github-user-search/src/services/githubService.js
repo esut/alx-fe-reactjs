@@ -11,6 +11,7 @@ export const searchGitHubUsers = async (query) =>{
     const{ usrname, location, minRepos } = query ;
     const filters = [];
     
+    const response = await axios.get(`https://api.github.com/search/users?q=${encodeURIComponent(filterString)}`);
     return response.data.items;
 };
 
