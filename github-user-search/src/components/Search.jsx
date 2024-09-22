@@ -6,7 +6,7 @@ const Search = () => {
 
     const [username, setUsername] = useState('');
 
-    const [userData, setUserData] = useState('');
+    const [userData, setUserData] = useState([]);
 
     const [loading, setLoading] = useState('');
     
@@ -59,9 +59,9 @@ const Search = () => {
 
             {error && <p>{error}</p>}
 
-            {userData && (
+            {userData.map(user =>  (
 
-                <div>
+                <div key={user.id}>
 
                     <h2>{userData.login}</h2>
 
@@ -69,7 +69,7 @@ const Search = () => {
                     <a href={userData.html_url} target="_blank" >Their GitHub Profile:</a>
 
                 </div>
-            )}
+            ))}
         </div>
     )
 }
