@@ -15,6 +15,9 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
